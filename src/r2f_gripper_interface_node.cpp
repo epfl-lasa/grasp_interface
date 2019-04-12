@@ -27,6 +27,8 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include <ros/ros.h>
+#include <iostream>
 #include <grasp_interface/r2f_gripper_interface.h>
 
 int main(int argc, char **argv)
@@ -35,6 +37,51 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "r2f_gripper_interface_node");
   
   r2fGripperInterface r = r2fGripperInterface();
+
+  ROS_INFO("[r2fGripperInterfaceTest] activating");
+  r.activate();
+
+  // return 1;
+  
+  //temp tests/////////////////////////////
+  
+  ros::Duration(2.0).sleep();
+  
+  //full functionality/////////////////////
+
+  
+  ROS_INFO("[r2fGripperInterfaceTest] fullClose");
+  //slow close
+  r.home();
+  r.setSpeed(-1);
+  r.fullClose();
+  ros::Duration(2.0).sleep();
+  
+  //fast open
+  ROS_INFO("[r2fGripperInterfaceTest] fullOpen");
+
+  r.setSpeed(-1);
+  r.fullOpen();
+  ros::Duration(2.0).sleep();
+  
+  ROS_INFO("[r2fGripperInterfaceTest] close a bit low speed");
+
+  r.setSpeed(128);
+  r.setPosition(128);
+  ros::Duration(2.0).sleep();
+
+  ROS_INFO("[r2fGripperInterfaceTest] fullClose low speed");
+  r.setSpeed(128);
+  r.setPosition(255);
+  ros::Duration(2.0).sleep();
+
+  ROS_INFO("[r2fGripperInterfaceTest] fullOpen high speed");
+  r.setSpeed(-1);
+  r.setPosition(0);
+  ros::Duration(2.0).sleep();
+
+	ROS_INFO("[r2fGripperInterfaceTest] resetting");
+  r.reset();
 
   ros::waitForShutdown();
   return 0;

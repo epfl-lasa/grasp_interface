@@ -39,8 +39,8 @@ r2fGripperInterface::r2fGripperInterface() :
     // In case commands are sent via a ROS topic:
     gripperCommandSub = n.subscribe("grip_command",1, &r2fGripperInterface::cb_command,this);    
     
-    gripperCommandPub = n.advertise<robotiq_2f_gripper_control::Robotiq2FGripper_robot_output>("2fModelRobotOutput",1);
-    gripperStatusSub = n.subscribe("2fModelRobotInput",1,&r2fGripperInterface::cb_getGripperStatus,this);
+    gripperCommandPub = n.advertise<robotiq_2f_gripper_control::Robotiq2FGripper_robot_output>("/Robotiq2FGripperRobotOutput",1);
+    gripperStatusSub = n.subscribe("/Robotiq2FGripperRobotInput",1,&r2fGripperInterface::cb_getGripperStatus,this);
     
     float printTime = 10, retryTime = 0.1;
     

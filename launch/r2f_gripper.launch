@@ -37,9 +37,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <node
     unless="$(arg sim)"
-    name="CModelTcpNode"
+    name="Robotiq2FGripperTcpNode"
     pkg="robotiq_2f_gripper_control"
-    type="CModelTcpNode.py"
+    type="Robotiq2FGripperTcpNode.py"
     args="$(arg ip)"
     output="screen"
   />
@@ -48,18 +48,18 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <group if="$(arg node)">
     <node
       if="$(arg sim)"
-      name="rc_gripper_interface_node"
+      name="r2f_gripper_interface_node"
       pkg="grasp_interface"
-      type="rc_gripper_interface_node"
+      type="r2f_gripper_interface_node"
       args="sim"
       output="screen"
     />
 
     <node
       unless="$(arg sim)"
-      name="rc_gripper_interface_node"
+      name="r2f_gripper_interface_node"
       pkg="grasp_interface"
-      type="rc_gripper_interface_node"
+      type="r2f_gripper_interface_node"
       output="screen"
     />
   </group>
