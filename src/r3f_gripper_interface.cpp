@@ -51,7 +51,7 @@ r3fGripperInterface::r3fGripperInterface(bool _sim):
     block = false; // make calls finish instantly
   } else {
 
-    gripperCommandPub = n.advertise<robotiq_3f_gripper_control::Robotiq3FGripper_robot_output>("r3fModelRobotOutput",1);
+    gripperCommandPub = n.advertise<robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotOutput>("r3fModelRobotOutput",1);
     gripperStatusSub = n.subscribe("r3fModelRobotInput",1,&r3fGripperInterface::cb_getGripperStatus,this);
 
     //command.rICF = 1; //command fingers separately, always
@@ -141,7 +141,7 @@ void r3fGripperInterface::reset()
 {
   ROS_DEBUG("[r3fGripperInterface] Beginning reset");
   deactivate();
-  command = robotiq_3f_gripper_control::Robotiq3FGripper_robot_output();
+  command = robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotOutput();
   activate();
   ROS_DEBUG("[r3fGripperInterface] Finished reset");
 }
@@ -340,7 +340,7 @@ void r3fGripperInterface::clampByte(int& toClamp, std::string name) {
   }
 }
 
-void r3fGripperInterface::cb_getGripperStatus(const robotiq_3f_gripper_control::Robotiq3FGripper_robot_input& msg)
+void r3fGripperInterface::cb_getGripperStatus(const robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotInput& msg)
 {
   messagesReceived_++;
   status = msg;

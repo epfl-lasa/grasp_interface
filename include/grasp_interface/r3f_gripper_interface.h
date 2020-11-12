@@ -30,8 +30,8 @@
 #include <grasp_interface/gripper_interface.h>
 
 //ROS messages
-#include <robotiq_3f_gripper_control/Robotiq3FGripper_robot_output.h>
-#include <robotiq_3f_gripper_control/Robotiq3FGripper_robot_input.h>
+#include <robotiq_3f_gripper_articulated_msgs/Robotiq3FGripperRobotOutput.h>
+#include <robotiq_3f_gripper_articulated_msgs/Robotiq3FGripperRobotInput.h>
 
 #ifndef RS_GRIPPER_INTERFACE_H
 #define RS_GRIPPER_INTERFACE_H
@@ -87,7 +87,7 @@ public:
   r3fGripperInterface(bool sim = false);
   
   // ROS callbacks
-  void cb_getGripperStatus(const robotiq_3f_gripper_control::Robotiq3FGripper_robot_input& msg);
+  void cb_getGripperStatus(const robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotInput& msg);
   void cb_command(const grasp_interface::r3fGripperCommand& alpha);
   
   // Basic Commands //////////////////////////////////////////////////////////////////////////
@@ -172,9 +172,9 @@ private:
   ros::Subscriber gripperCommandSub;                      /// Listen for people trying to use this gripper
   
   ros::Subscriber gripperStatusSub;                       /// Listen to the gripper
-  robotiq_3f_gripper_control::Robotiq3FGripper_robot_input status;     /// The status returned from the gripper
-  
-  robotiq_3f_gripper_control::Robotiq3FGripper_robot_output command;   /// Store the command to send to the gripper
+  robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotInput status;     /// The status returned from the gripper
+
+  robotiq_3f_gripper_articulated_msgs::Robotiq3FGripperRobotOutput command;   /// Store the command to send to the gripper
   ros::Publisher gripperCommandPub;                       /// Used to send the command to the gripper
 };
 
